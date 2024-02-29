@@ -26,22 +26,9 @@ import os
 def create_chain():
     # Callback Manager For Streaming Handler
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-    
-    # Loading Model
-    llm = LlamaCpp(
-        # model_path="llama-2-7b-chat.ggmlv3.q2_K.bin",
-        model_path="C:/Users/Alaa AI/Python Projects/Ai Models/llama-2-7b-chat.Q4_K_M.gguf",
-        n_ctx=1000,
-        n_gpu_layers=512,
-        n_batch=30,
-        callback_manager=callback_manager,
-        temperature = 0.1,
-        max_tokens = 30000,
-        n_parts=1,
-    )
     # embedding engine
     hf_embedding = HuggingFaceInstructEmbeddings()
-    filePath = "C:/Users/Alaa AI/Python Projects/Projects/Streamlit chat app/Chat with PDF - Chroma/chroma_knowledge_base/"
+    filePath = "chroma_knowledge_base/"
     if(os.path.isdir(filePath)):
         st.markdown("Knowledge Base is Loading ...")
         # load from local
@@ -56,6 +43,19 @@ def create_chain():
         st.markdown("We've loaded "+str(len(knowledge_base_texts)) + " Pages ")
         st.markdown("Knowledge Base is Now Under Creation Progress ...")
         db = Chroma.from_documents(knowledge_base_texts, hf_embedding , persist_directory = "chroma_knowledge_base")
+    # Loading Model
+    llm = LlamaCpp(
+        # model_path="llama-2-7b-chat.ggmlv3.q2_K.bin",
+        model_path="llama-2-7b-chat.Q4_K_M.gguf",
+        n_ctx=1000,
+        n_gpu_layers=512,
+        n_batch=30,
+        callback_manager=callback_manager,
+        temperature = 0.1,
+        max_tokens = 30000,
+        n_parts=1,
+    )
+    
 
     # Prompt Template
     template = """Question: {question}
