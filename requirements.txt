@@ -8,3 +8,4 @@ langchain_experimental
 deep_translator
 huggingface_hub
 chromadb==0.4.8
+wget https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_K_M.gguf?download=true
