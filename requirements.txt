@@ -1,0 +1,10 @@
+setuptools
+pypdf
+InstructorEmbedding
+sentence_transformers==2.2.2
+langchain_community
+langchain
+langchain_experimental
+deep_translator
+huggingface_hub
+chromadb==0.4.8
